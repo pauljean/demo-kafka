@@ -42,10 +42,7 @@ public class Main {
 	producerKafka.sendMessage("testtopic", "Salut");
 	producerKafka.sendMessage("testtopic", "ca va");
 	System.out.println(consumerKafka.getConsumer().listTopics().toString());
-	new Thread( () -> {
-	    consumerKafka.consumeAll();
-	}).start();
-	//consumerKafka.consumeAll();
+	consumerKafka.consumeAll();
 	producerKafka.close();
 	consumerKafka.close();
 

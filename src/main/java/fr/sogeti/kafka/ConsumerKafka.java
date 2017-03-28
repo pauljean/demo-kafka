@@ -31,29 +31,24 @@ public class ConsumerKafka {
 
     public void consumeAll() {
 
-	new Thread(() -> {
-	    try {
-		while (true) {
-		    LOG.log(Level.INFO, "Attempt to consume all the records 2");
-		    ConsumerRecords<String, String> records = consumer.poll(1000);
-		    LOG.info("after");
+	try {
 
-		    records.forEach(e -> {
-			System.out.println("ça marche");
-			System.out.printf("offset = %d, key = %s, value = %s\n", e.offset(), e.key(), e.value());
-		    });
+	    LOG.log(Level.INFO, "Attempt to consume all the records 2");
+	    ConsumerRecords<String, String> records = consumer.poll(1000);
+	    LOG.info("after");
 
-		    LOG.log(Level.INFO, "Displaying records DONE");
+	    records.forEach(e -> {
+		System.out.println("ça marche");
+		System.out.printf("offset = %d, key = %s, value = %s\n", e.offset(), e.key(), e.value());
+	    });
 
-		}
-	    } catch (WakeupException e) {
+	    LOG.log(Level.INFO, "Displaying records DONE");
 
-		e.printStackTrace();
-	    } finally {
-		consumer.close();
-	    }
+	} catch (WakeupException e) {
 
-	}).start();
+	    e.printStackTrace();
+	} 
+
     }
 
     public void close() {

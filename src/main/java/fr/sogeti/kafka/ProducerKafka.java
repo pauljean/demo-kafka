@@ -15,17 +15,13 @@ public class ProducerKafka {
     private static final Logger LOG = Logger.getLogger(ProducerKafka.class.getName());
 
     public ProducerKafka(Properties properties) {
-
 	this.producer = new KafkaProducer<String, String>(properties);
-
     }
 
     public void sendMessage(String topic, String message) {
-
 	LOG.log(Level.INFO, "Sending message on topic : {0}", topic);
 	producer.send(new ProducerRecord<String, String>(topic, message));
 	LOG.log(Level.INFO, "Message {0} has been sent", message);
-
     }
 
     public void close() {
