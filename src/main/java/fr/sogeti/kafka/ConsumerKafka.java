@@ -33,12 +33,11 @@ public class ConsumerKafka {
 
 	try {
 
-	    LOG.log(Level.INFO, "Attempt to consume all the records 2");
+	    LOG.log(Level.INFO, "Attempt to consume all the records");
 	    ConsumerRecords<String, String> records = consumer.poll(1000);
 	    LOG.info("after");
 
 	    records.forEach(e -> {
-		System.out.println("ça marche");
 		System.out.printf("offset = %d, key = %s, value = %s\n", e.offset(), e.key(), e.value());
 	    });
 
